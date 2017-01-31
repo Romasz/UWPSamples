@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="ItemTemplateSelectorSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ItemTemplateSelectorSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Horizontal">
+        <StackPanel.Resources>
+            <local:MySelector x:Key="MySelector">
+                <local:MySelector.GreenTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Text}" Foreground="Green"/>
+                    </DataTemplate>
+                </local:MySelector.GreenTemplate>
+                <local:MySelector.RedTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Text}" Foreground="Red"/>
+                    </DataTemplate>
+                </local:MySelector.RedTemplate>
+            </local:MySelector>
+        </StackPanel.Resources>
+
+        <ListView x:Name="ListOfItems" Width="100" ItemTemplateSelector="{StaticResource MySelector}"/>
+        <StackPanel>
+            <ToggleSwitch OnContent="GREEN" OffContent="RED" Margin="10" IsOn="{x:Bind IsSwitched, Mode=TwoWay}"/>
+            <Button Content="Add item" Click="AddClick" Margin="10"/>
+        </StackPanel>
+    </StackPanel>
+</Page>
